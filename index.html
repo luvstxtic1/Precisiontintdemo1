@@ -283,6 +283,74 @@
   .gallery-strip .stacked{display:grid; gap:20px;}
   .gallery-strip .stacked img{aspect-ratio:16/7.6;}
 
+  /* ---------- quote form ---------- */
+  .quote-layout{display:grid; grid-template-columns:1.6fr 1fr; gap:36px; align-items:start;}
+  @media (max-width:900px){ .quote-layout{grid-template-columns:1fr;} }
+  .quote-form, .quote-success{
+    background:var(--ink); border:1px solid var(--line); border-radius:18px;
+    padding:36px;
+  }
+  @media (max-width:560px){ .quote-form, .quote-success{padding:24px 20px;} }
+  .qf-row{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+  @media (max-width:560px){ .qf-row{grid-template-columns:1fr;} }
+  .qf-field{margin-bottom:20px;}
+  .qf-field label{
+    display:block; font-size:0.85rem; color:var(--sand-dim); margin-bottom:8px;
+  }
+  .qf-field input[type="text"],
+  .qf-field input[type="tel"],
+  .qf-field input[type="email"],
+  .qf-field select,
+  .qf-field textarea{
+    width:100%; background:var(--ink-2); border:1px solid var(--line);
+    border-radius:8px; padding:13px 14px; color:var(--sand);
+    font-family:'Inter', sans-serif; font-size:0.96rem;
+  }
+  .qf-field select{ appearance:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B9B2A4' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat:no-repeat; background-position:right 14px center; background-size:16px;
+    padding-right:38px;
+  }
+  .qf-field textarea{resize:vertical; min-height:88px; font-family:inherit;}
+  .qf-field input:focus, .qf-field select:focus, .qf-field textarea:focus{
+    outline:none; border-color:var(--glass-dim);
+  }
+  .qf-field input:invalid:required, .qf-field select:invalid:required{
+    box-shadow:none; /* only flag on submit attempt via .qf-error */
+  }
+  .qf-field.qf-error input, .qf-field.qf-error select{
+    border-color:#D9584F;
+  }
+  .qf-checkbox{display:flex; align-items:flex-start; gap:10px;}
+  .qf-checkbox input{margin-top:4px; width:16px; height:16px; flex-shrink:0;}
+  .qf-checkbox label{margin-bottom:0; font-size:0.85rem; line-height:1.5;}
+  .qf-submit{width:100%; justify-content:center; margin-top:4px;}
+  .qf-fineprint{color:var(--sand-dim); font-size:0.78rem; margin-top:16px; line-height:1.6;}
+
+  .quote-success{text-align:center;}
+  .qs-icon{
+    width:56px; height:56px; border-radius:50%; background:var(--copper);
+    display:flex; align-items:center; justify-content:center; margin:0 auto 20px;
+  }
+  .qs-icon svg{width:26px; height:26px;}
+  .quote-success h3{font-size:1.3rem; margin-bottom:10px;}
+  .quote-success p{color:var(--sand-dim); max-width:40ch; margin:0 auto 24px;}
+
+  .quote-side{display:flex; flex-direction:column; gap:20px;}
+  .quote-side-card{
+    background:var(--ink); border:1px solid var(--line); border-radius:16px; padding:26px;
+  }
+  .quote-side-card h3{font-size:1.02rem; margin-bottom:10px;}
+  .quote-side-card p{color:var(--sand-dim); font-size:0.9rem; margin-bottom:14px;}
+  .qs-steps{list-style:none; margin:0; padding:0; display:grid; gap:12px;}
+  .qs-steps li{
+    color:var(--sand-dim); font-size:0.88rem; padding-left:22px; position:relative;
+  }
+  .qs-steps li::before{
+    content:""; position:absolute; left:0; top:6px; width:8px; height:8px;
+    border-radius:50%; background:var(--glass);
+  }
+
   /* ---------- CTA band ---------- */
   .cta-band{
     background:linear-gradient(120deg, var(--ink-2), var(--ink-3));
@@ -328,7 +396,7 @@
       <a href="#shades">Shades</a>
       <a href="#services">Services</a>
       <a href="#area">Service Area</a>
-      <a href="#contact">Contact</a>
+      <a href="#quote">Get a Quote</a>
       <a href="tel:4807883159" class="call-btn">Call 480-788-3159</a>
     </nav>
     <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">&#9776;</button>
@@ -341,7 +409,7 @@
   <a href="#shades">Shades</a>
   <a href="#services">Services</a>
   <a href="#area">Service Area</a>
-  <a href="#contact">Contact</a>
+  <a href="#quote">Get a Quote</a>
   <a href="tel:4807883159" class="call-btn">Call 480-788-3159</a>
 </nav>
 
@@ -352,8 +420,8 @@
     <h1 class="hero-h">The Arizona sun is relentless. <span class="accent">Your glass doesn't have to take the hit.</span></h1>
     <p class="hero-sub">Heat rejection, UV protection and glare control for cars, homes and offices across the Phoenix metro — installed by hand, backed by warranty, and easy to see for yourself below.</p>
     <div class="hero-ctas">
-      <a href="tel:4807883159" class="btn btn-primary">Call 480-788-3159</a>
-      <a href="#compare" class="btn btn-ghost">See the difference &darr;</a>
+      <a href="#quote" class="btn btn-primary">Get a free quote</a>
+      <a href="tel:4807883159" class="btn btn-ghost">Call 480-788-3159</a>
     </div>
     <div class="hero-stats">
       <div><div class="num">99%</div><div class="lbl">UV rays blocked</div></div>
@@ -562,6 +630,98 @@
   </div>
 </section>
 
+<section id="quote" style="background:var(--ink-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Get a free quote</span>
+      <h2>Tell us about the job. We'll call you back with pricing.</h2>
+      <p>No obligation, no pushy follow-up — just a straight answer on shade options, film type and cost for your vehicle, home or business.</p>
+    </div>
+    <div class="quote-layout">
+      <form id="quoteForm" class="quote-form" novalidate>
+        <div class="qf-row">
+          <div class="qf-field">
+            <label for="qf-name">Name *</label>
+            <input type="text" id="qf-name" name="name" required autocomplete="name">
+          </div>
+          <div class="qf-field">
+            <label for="qf-phone">Phone *</label>
+            <input type="tel" id="qf-phone" name="phone" required autocomplete="tel" placeholder="(480) 555-0100">
+          </div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-field">
+            <label for="qf-email">Email</label>
+            <input type="email" id="qf-email" name="email" autocomplete="email">
+          </div>
+          <div class="qf-field">
+            <label for="qf-zip">City / ZIP</label>
+            <input type="text" id="qf-zip" name="zip" placeholder="Chandler, 85224">
+          </div>
+        </div>
+        <div class="qf-row">
+          <div class="qf-field">
+            <label for="qf-type">What needs tint? *</label>
+            <select id="qf-type" name="project_type" required>
+              <option value="" disabled selected>Choose one</option>
+              <option>Car / truck / SUV</option>
+              <option>Home</option>
+              <option>Office / storefront</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="qf-field">
+            <label for="qf-shade">Preferred shade</label>
+            <select id="qf-shade" name="shade_preference">
+              <option value="" selected>No preference / need advice</option>
+              <option>5% — Limo</option>
+              <option>20% — Sport</option>
+              <option>35% — Balanced</option>
+              <option>50% — Subtle</option>
+              <option>70% — Clear guard (UV only)</option>
+            </select>
+          </div>
+        </div>
+        <div class="qf-field">
+          <label for="qf-details">Vehicle or property details</label>
+          <textarea id="qf-details" name="details" rows="3" placeholder="e.g. 2022 Honda Civic, 4-door — or — single-story home, 14 windows"></textarea>
+        </div>
+        <div class="qf-field qf-checkbox">
+          <input type="checkbox" id="qf-consent" name="consent" required>
+          <label for="qf-consent">I agree to be contacted about this quote by phone, text or email. *</label>
+        </div>
+        <button type="submit" class="btn btn-primary qf-submit">Request my quote</button>
+        <p class="qf-fineprint">* Required. This demo form doesn't send data anywhere yet — see the README for how to connect it to email or a booking system.</p>
+      </form>
+
+      <div id="quoteSuccess" class="quote-success" hidden>
+        <div class="qs-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3>Got it — thanks!</h3>
+        <p>In a live version of this site, your request would land in our inbox right now and someone would call you back, usually the same day.</p>
+        <button type="button" class="btn btn-ghost" id="qfReset">Submit another request</button>
+      </div>
+
+      <aside class="quote-side">
+        <div class="quote-side-card">
+          <h3>Prefer to just talk?</h3>
+          <p>Call or text us directly and we'll quote you on the spot.</p>
+          <a href="tel:4807883159" class="cta-phone" style="font-size:1.6rem;">480-788-3159</a>
+        </div>
+        <div class="quote-side-card">
+          <h3>What happens next</h3>
+          <ul class="qs-steps">
+            <li>We call or text you back, usually same day</li>
+            <li>We confirm shade, film type and price</li>
+            <li>We book an install slot that fits your week</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="wrap">
     <div class="cta-band">
@@ -581,11 +741,12 @@
         <a href="#compare">See the Difference</a>
         <a href="#services">Services</a>
         <a href="#area">Service Area</a>
+        <a href="#quote">Get a Quote</a>
         <a href="tel:4807883159">480-788-3159</a>
       </div>
     </div>
     <div class="demo-note">
-      This is a demo website built to illustrate a possible web presence for Precision Tinting Solutions. Photos are AI-generated to demonstrate the before/after comparison tool, and business details beyond the phone number (address, hours, pricing, warranty terms) are placeholder content, not verified facts. Replace with real photos and copy before publishing live.
+      This is a demo website built to illustrate a possible web presence for Precision Tinting Solutions. Photos are AI-generated to demonstrate the before/after comparison tool, business details beyond the phone number (address, hours, pricing, warranty terms) are placeholder content, and the quote form below doesn't send data anywhere yet — see the README for how to connect it to email or a booking system. Replace with real photos and copy before publishing live.
     </div>
   </div>
 </footer>
@@ -610,6 +771,41 @@
   mobileClose.addEventListener('click', closeNav);
   mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
   window.addEventListener('keydown', e => { if(e.key === 'Escape') closeNav(); });
+
+  // quote form (front-end only — see README to wire this to a real backend)
+  const quoteForm = document.getElementById('quoteForm');
+  const quoteSuccess = document.getElementById('quoteSuccess');
+  const qfReset = document.getElementById('qfReset');
+
+  quoteForm.addEventListener('submit', e => {
+    e.preventDefault();
+    let valid = true;
+    quoteForm.querySelectorAll('[required]').forEach(field => {
+      const wrapper = field.closest('.qf-field');
+      const filled = field.type === 'checkbox' ? field.checked : field.value.trim() !== '';
+      if(!filled){
+        valid = false;
+        if(wrapper) wrapper.classList.add('qf-error');
+      } else if(wrapper){
+        wrapper.classList.remove('qf-error');
+      }
+    });
+    if(!valid){
+      quoteForm.querySelector('.qf-error input, .qf-error select')?.focus();
+      return;
+    }
+    quoteForm.hidden = true;
+    quoteSuccess.hidden = false;
+    quoteSuccess.scrollIntoView({behavior:'smooth', block:'center'});
+  });
+
+  qfReset.addEventListener('click', () => {
+    quoteForm.reset();
+    quoteForm.querySelectorAll('.qf-error').forEach(f => f.classList.remove('qf-error'));
+    quoteSuccess.hidden = true;
+    quoteForm.hidden = false;
+    quoteForm.scrollIntoView({behavior:'smooth', block:'center'});
+  });
 
   // before/after compare sliders
   document.querySelectorAll('[data-compare]').forEach(wrap => {
