@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precision Tinting Solutions — Arizona Window Tint</title>
+<meta name="description" content="Automotive, residential and commercial window tinting across the Phoenix metro. See the difference before you commit.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%2315171C%22/><rect x=%2222%22 y=%2230%22 width=%2256%22 height=%2240%22 rx=%224%22 fill=%22%23C9702D%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15171C;
+    --ink-2:#1E2128;
+    --ink-3:#2A2E37;
+    --line: rgba(239,233,222,0.12);
+    --sand:#EFE9DE;
+    --sand-dim:#B9B2A4;
+    --copper:#C9702D;
+    --copper-bright:#E6893E;
+    --glass:#5FA9B8;
+    --glass-dim:#3E7681;
+    --radius: 10px;
+    --wrap: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--sand);
+    font-family:'Inter', -apple-system, sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+    color:#fff;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--wrap); margin:0 auto; padding:0 24px;}
+  section{padding:96px 0;}
+  @media (max-width:720px){ section{padding:64px 0;} }
+
+  /* heat-line divider motif */
+  .heatline{
+    height:2px;
+    background:linear-gradient(90deg, transparent, var(--copper) 20%, var(--glass) 80%, transparent);
+    opacity:0.5;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(21,23,28,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px;
+    max-width:var(--wrap); margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:10px; font-family:'Space Grotesk'; font-weight:700; color:#fff; font-size:1.05rem;}
+  .brand .mark{width:30px; height:30px; border-radius:7px; background:linear-gradient(135deg, var(--copper), var(--glass)); flex-shrink:0;}
+  .brand small{display:block; font-family:'Inter'; font-weight:400; font-size:0.68rem; color:var(--sand-dim); letter-spacing:0.02em;}
+  nav.links{display:flex; gap:32px; align-items:center;}
+  nav.links a{font-size:0.92rem; color:var(--sand-dim); transition:color .15s;}
+  nav.links a:hover{color:var(--sand);}
+  .call-btn{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--copper); color:#fff !important;
+    padding:10px 18px; border-radius:999px; font-weight:600; font-size:0.92rem;
+    white-space:nowrap;
+  }
+  .call-btn:hover{background:var(--copper-bright);}
+  .menu-toggle{display:none; background:none; border:none; color:var(--sand); font-size:1.5rem; cursor:pointer;}
+  @media (max-width:860px){
+    nav.links{
+      position:fixed; inset:64px 0 0 0; background:var(--ink); flex-direction:column;
+      padding:32px 24px; gap:22px; transform:translateX(100%); transition:transform .25s ease;
+    }
+    nav.links.open{transform:translateX(0);}
+    nav.links a{font-size:1.1rem;}
+    .menu-toggle{display:block;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:0;
+    min-height:88vh;
+    display:flex; align-items:center;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background-size:cover; background-position:center;
+  }
+  .hero-bg::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(90deg, rgba(21,23,28,0.96) 0%, rgba(21,23,28,0.78) 42%, rgba(21,23,28,0.35) 75%, rgba(21,23,28,0.55) 100%);
+  }
+  .hero-content{position:relative; z-index:2; max-width:var(--wrap); margin:0 auto; padding:120px 24px 90px; width:100%;}
+  .hero-eyebrow-line{display:flex; align-items:center; gap:12px; margin-bottom:22px;}
+  .hero-eyebrow-line .dash{width:34px; height:2px; background:var(--copper);}
+  .hero-eyebrow-line span{color:var(--sand-dim); font-size:0.85rem;}
+  h1.hero-h{
+    font-size:clamp(2.4rem, 5.6vw, 4.1rem);
+    line-height:1.04;
+    max-width:14ch;
+    margin-bottom:26px;
+  }
+  h1.hero-h .accent{color:var(--copper-bright);}
+  .hero-sub{
+    max-width:46ch; color:var(--sand-dim); font-size:1.08rem; margin-bottom:38px;
+  }
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    padding:14px 26px; border-radius:999px; font-weight:600; font-size:0.96rem;
+    display:inline-flex; align-items:center; gap:10px; cursor:pointer; border:none;
+  }
+  .btn-primary{background:var(--copper); color:#fff;}
+  .btn-primary:hover{background:var(--copper-bright);}
+  .btn-ghost{background:transparent; color:var(--sand); border:1px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--sand-dim);}
+  .hero-stats{
+    display:flex; gap:44px; margin-top:64px; flex-wrap:wrap;
+  }
+  .hero-stats div{border-left:2px solid var(--copper); padding-left:14px;}
+  .hero-stats .num{font-family:'Space Grotesk'; font-size:1.7rem; color:#fff; font-weight:700;}
+  .hero-stats .lbl{font-size:0.82rem; color:var(--sand-dim);}
+
+  /* ---------- section headers ---------- */
+  .sec-head{max-width:640px; margin-bottom:56px;}
+  .sec-head .kicker{color:var(--glass); font-size:0.85rem; margin-bottom:12px; display:block;}
+  .sec-head h2{font-size:clamp(1.8rem, 3.4vw, 2.5rem); margin-bottom:16px;}
+  .sec-head p{color:var(--sand-dim); font-size:1.02rem;}
+
+  /* ---------- slider section ---------- */
+  .compare-grid{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+  @media (max-width:860px){ .compare-grid{grid-template-columns:1fr;} }
+  .compare-card{background:var(--ink-2); border:1px solid var(--line); border-radius:16px; overflow:hidden;}
+  .compare-title{padding:20px 22px 0;}
+  .compare-title h3{font-size:1.15rem; margin-bottom:4px;}
+  .compare-title p{color:var(--sand-dim); font-size:0.9rem;}
+  .compare-wrap{
+    position:relative; width:100%; aspect-ratio:16/10; margin-top:18px; overflow:hidden;
+    cursor: ew-resize; touch-action:pan-y;
+    -webkit-user-select:none; user-select:none;
+  }
+  .compare-wrap img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    pointer-events:none; -webkit-user-drag:none;
+  }
+  .compare-wrap .after-img{ clip-path: inset(0 0 0 50%); }
+  .compare-handle{
+    position:absolute; top:0; bottom:0; left:50%;
+    width:2px; background:rgba(255,255,255,0.85);
+    transform:translateX(-1px);
+    pointer-events:none;
+  }
+  .compare-handle .knob{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:44px; height:44px; border-radius:50%;
+    background:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 4px 14px rgba(0,0,0,0.35);
+  }
+  .compare-handle .knob svg{width:18px; height:18px;}
+  .tag{
+    position:absolute; top:14px; padding:6px 12px; border-radius:999px;
+    font-size:0.72rem; font-weight:600; letter-spacing:0.03em;
+    background:rgba(21,23,28,0.75); color:var(--sand); backdrop-filter:blur(4px);
+    pointer-events:none;
+  }
+  .tag-before{left:14px;}
+  .tag-after{right:14px;}
+  .compare-range{
+    position:absolute; inset:0; width:100%; height:100%;
+    opacity:0; cursor:ew-resize; margin:0;
+  }
+  .compare-caption{padding:16px 22px 22px; color:var(--sand-dim); font-size:0.86rem;}
+
+  /* ---------- shade guide ---------- */
+  .shade-grid{display:grid; grid-template-columns:repeat(5,1fr); gap:14px;}
+  @media (max-width:900px){ .shade-grid{grid-template-columns:repeat(2,1fr);} }
+  .shade-card{background:var(--ink-2); border:1px solid var(--line); border-radius:14px; padding:20px; text-align:left;}
+  .shade-swatch{
+    height:90px; border-radius:10px; margin-bottom:16px;
+    background:linear-gradient(180deg, rgba(95,169,184,0.25), rgba(95,169,184,0.25));
+    position:relative; overflow:hidden;
+  }
+  .shade-swatch::before{
+    content:""; position:absolute; inset:0;
+    background:#0a0b0d;
+  }
+  .shade-pct{font-family:'Space Grotesk'; font-weight:700; font-size:1.5rem; color:#fff; margin-bottom:6px;}
+  .shade-name{color:var(--copper-bright); font-size:0.85rem; font-weight:600; margin-bottom:10px;}
+  .shade-desc{color:var(--sand-dim); font-size:0.86rem;}
+
+  /* ---------- services ---------- */
+  .svc-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  @media (max-width:900px){ .svc-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:600px){ .svc-grid{grid-template-columns:1fr;} }
+  .svc-card{
+    background:var(--ink-2); border:1px solid var(--line); border-radius:14px; padding:26px;
+    transition: border-color .15s, transform .15s;
+  }
+  .svc-card:hover{border-color:var(--glass-dim); transform:translateY(-2px);}
+  .svc-icon{width:38px; height:38px; margin-bottom:18px; color:var(--glass);}
+  .svc-card h3{font-size:1.08rem; margin-bottom:10px;}
+  .svc-card p{color:var(--sand-dim); font-size:0.9rem;}
+
+  /* ---------- service area ---------- */
+  .area-layout{display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:center;}
+  @media (max-width:900px){ .area-layout{grid-template-columns:1fr;} }
+  .city-list{list-style:none; margin:28px 0 0; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:12px 24px;}
+  .city-list li{display:flex; align-items:center; gap:10px; color:var(--sand-dim); font-size:0.95rem;}
+  .city-list li::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--copper); flex-shrink:0;}
+  .map-box{background:var(--ink-2); border:1px solid var(--line); border-radius:18px; padding:28px;}
+
+  /* ---------- why us ---------- */
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px;}
+  @media (max-width:900px){ .why-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .why-grid{grid-template-columns:1fr;} }
+  .why-item .why-num{font-family:'Space Grotesk'; font-size:0.85rem; color:var(--copper); margin-bottom:14px; letter-spacing:0.04em;}
+  .why-item h3{font-size:1.05rem; margin-bottom:10px;}
+  .why-item p{color:var(--sand-dim); font-size:0.89rem;}
+
+  /* ---------- gallery strip ---------- */
+  .gallery-strip{display:grid; grid-template-columns:1.4fr 1fr; gap:20px;}
+  @media (max-width:800px){ .gallery-strip{grid-template-columns:1fr;} }
+  .gallery-strip img{border-radius:16px; width:100%; height:100%; object-fit:cover; aspect-ratio:16/11;}
+  .gallery-strip .stacked{display:grid; gap:20px;}
+  .gallery-strip .stacked img{aspect-ratio:16/7.6;}
+
+  /* ---------- CTA band ---------- */
+  .cta-band{
+    background:linear-gradient(120deg, var(--ink-2), var(--ink-3));
+    border-radius:22px; padding:64px 48px; text-align:center;
+    border:1px solid var(--line);
+  }
+  @media (max-width:600px){ .cta-band{padding:44px 22px;} }
+  .cta-band h2{font-size:clamp(1.7rem,3.6vw,2.4rem); margin-bottom:16px;}
+  .cta-band p{color:var(--sand-dim); max-width:52ch; margin:0 auto 32px;}
+  .cta-phone{
+    font-family:'Space Grotesk'; font-weight:700; font-size:clamp(1.8rem,4vw,2.6rem);
+    color:#fff; display:inline-block; margin-bottom:8px;
+  }
+  .cta-phone:hover{color:var(--copper-bright);}
+  .cta-note{color:var(--sand-dim); font-size:0.85rem;}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line); padding:44px 0 32px;}
+  .foot-grid{display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; margin-bottom:28px;}
+  .foot-brand{font-family:'Space Grotesk'; font-weight:700; color:#fff;}
+  .foot-links{display:flex; gap:26px; flex-wrap:wrap;}
+  .foot-links a{color:var(--sand-dim); font-size:0.9rem;}
+  .foot-links a:hover{color:var(--sand);}
+  .demo-note{
+    color:var(--sand-dim); font-size:0.78rem; border-top:1px solid var(--line);
+    padding-top:22px; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="mark"></div>
+      <div>
+        PRECISION TINTING SOLUTIONS
+        <small>Phoenix Metro, Arizona</small>
+      </div>
+    </div>
+    <nav class="links" id="navLinks">
+      <a href="#compare">See the Difference</a>
+      <a href="#shades">Shades</a>
+      <a href="#services">Services</a>
+      <a href="#area">Service Area</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:4807883159" class="call-btn">Call 480-788-3159</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-bg" style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_38jUgr17I6kW2g7ysqUa9OUVLGY/hf_20260917_203430_8e079101-549e-4a20-9564-89fd4d919b5e.png');"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow-line"><span class="dash"></span><span>Automotive · Residential · Commercial</span></div>
+    <h1 class="hero-h">The Arizona sun is relentless. <span class="accent">Your glass doesn't have to take the hit.</span></h1>
+    <p class="hero-sub">Heat rejection, UV protection and glare control for cars, homes and offices across the Phoenix metro — installed by hand, backed by warranty, and easy to see for yourself below.</p>
+    <div class="hero-ctas">
+      <a href="tel:4807883159" class="btn btn-primary">Call 480-788-3159</a>
+      <a href="#compare" class="btn btn-ghost">See the difference &darr;</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="num">99%</div><div class="lbl">UV rays blocked</div></div>
+      <div><div class="num">Up to 60%</div><div class="lbl">Interior heat reduced</div></div>
+      <div><div class="num">Lifetime</div><div class="lbl">Warranty on film</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="heatline"></div>
+
+<section id="compare">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Drag to compare</span>
+      <h2>See it before you commit to it.</h2>
+      <p>Same vehicle. Same house. The only thing that changed is the glass. Drag the handle on either photo to slide between before and after.</p>
+    </div>
+    <div class="compare-grid">
+      <div class="compare-card">
+        <div class="compare-title"><h3>Automotive tint</h3><p>Ceramic film, 20% VLT</p></div>
+        <div class="compare-wrap" data-compare>
+          <img class="before-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_38jUgr17I6kW2g7ysqUa9OUVLGY/hf_20260917_203358_e283993e-4dce-4df1-be79-c3e59f037f9a.png" alt="Car with untinted windows">
+          <img class="after-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_38jUgr17I6kW2g7ysqUa9OUVLGY/hf_20260917_203419_23a4ad43-37ec-4b59-aabd-4948f7458198.png" alt="Same car with tinted windows">
+          <div class="compare-handle"><div class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="2"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div></div>
+          <span class="tag tag-before">BEFORE</span>
+          <span class="tag tag-after">AFTER</span>
+          <input type="range" class="compare-range" min="0" max="100" value="50" aria-label="Compare before and after">
+        </div>
+        <div class="compare-caption">Cuts glare and cabin heat without darkening the driver's view at night.</div>
+      </div>
+      <div class="compare-card">
+        <div class="compare-title"><h3>Residential tint</h3><p>Solar film, low reflectivity</p></div>
+        <div class="compare-wrap" data-compare>
+          <img class="before-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_38jUgr17I6kW2g7ysqUa9OUVLGY/hf_20260917_203425_95defccd-9c12-4fdf-a926-4a2d4b432710.png" alt="Home with untinted windows">
+          <img class="after-img" src="https://d8j0ntlcm91z4.cloudfront.net/user_38jUgr17I6kW2g7ysqUa9OUVLGY/hf_20260917_203451_68538bd8-d162-41a7-8a87-77d5e679551d.png" alt="Same home with tinted windows">
+          <div class="compare-handle"><div class="knob"><svg viewBox="0 0 24 24" fill="none" stroke="#15171C" stroke-width="2"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/></svg></div></div>
+          <span class="tag tag-before">BEFORE</span>
+          <span class="tag tag-after">AFTER</span>
+          <input type="range" class="compare-range" min="0" max="100" value="50" aria-label="Compare before and after">
+        </div>
+        <div class="compare-caption">Protects flooring and furniture from fading while keeping rooms cooler.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="shades" style="background:var(--ink-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Pick your darkness</span>
+      <h2>Every shade is a trade-off. We'll help you find yours.</h2>
+      <p>VLT (visible light transmission) is the percentage of light that passes through the film — lower numbers mean darker glass.</p>
+    </div>
+    <div class="shade-grid">
+      <div class="shade-card"><div class="shade-swatch" style="opacity:0.95"></div><div class="shade-pct">5%</div><div class="shade-name">Limo</div><div class="shade-desc">Maximum privacy. Popular on rear windows only.</div></div>
+      <div class="shade-card"><div class="shade-swatch" style="opacity:0.8"></div><div class="shade-pct">20%</div><div class="shade-name">Sport</div><div class="shade-desc">Our most requested shade for daily drivers.</div></div>
+      <div class="shade-card"><div class="shade-swatch" style="opacity:0.6"></div><div class="shade-pct">35%</div><div class="shade-name">Balanced</div><div class="shade-desc">Noticeable heat and glare relief, still easy to see in.</div></div>
+      <div class="shade-card"><div class="shade-swatch" style="opacity:0.4"></div><div class="shade-pct">50%</div><div class="shade-name">Subtle</div><div class="shade-desc">A light tint that mainly cuts UV, not visibility.</div></div>
+      <div class="shade-card"><div class="shade-swatch" style="opacity:0.18"></div><div class="shade-pct">70%</div><div class="shade-name">Clear guard</div><div class="shade-desc">Near-invisible film for UV and fade protection only.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">What we install</span>
+      <h2>One team, every kind of glass.</h2>
+      <p>From a daily commuter to a full office tower, we carry film built for each job.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-6h14l2 6M3 12v5a1 1 0 001 1h1a1 1 0 001-1v-1h12v1a1 1 0 001 1h1a1 1 0 001-1v-5M3 12h18"/></svg>
+        <h3>Automotive window tint</h3>
+        <p>Factory-look film for cars, trucks and SUVs in a range of VLT shades, cut precisely to your vehicle.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10.5L12 3l9 7.5M5 9.5V21h14V9.5M9 21v-6h6v6"/></svg>
+        <h3>Residential window tint</h3>
+        <p>Cuts UV and heat gain through home windows without losing your view or natural light.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 21V6l7-3 7 3v15M9 21v-5h4v5M8 9h1M8 13h1M13 9h1M13 13h1"/></svg>
+        <h3>Commercial window tint</h3>
+        <p>Storefronts and office buildings get lower cooling costs and a more private interior during the day.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 010 18"/></svg>
+        <h3>Ceramic tint</h3>
+        <p>The best heat rejection we offer, with no signal interference and no fading over time.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <h3>Carbon tint</h3>
+        <p>A matte, non-reflective finish that blocks strong heat at a more accessible price than ceramic.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l2.5 6.5L21 11l-6.5 2.5L12 20l-2.5-6.5L3 11l6.5-2.5z"/></svg>
+        <h3>Dyed &amp; economy tint</h3>
+        <p>A budget-friendly option that darkens glass and adds privacy for drivers watching costs closely.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l8 4v6c0 5-3.4 8.4-8 10-4.6-1.6-8-5-8-10V6l8-4z"/></svg>
+        <h3>Security &amp; safety film</h3>
+        <p>Thick film that holds shattered glass together, slowing break-ins and reducing injury from impact.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg>
+        <h3>Decorative &amp; frosted film</h3>
+        <p>Etched and frosted patterns for bathrooms, conference rooms and storefronts that need privacy with light.</p>
+      </div>
+      <div class="svc-card">
+        <svg class="svc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4"/></svg>
+        <h3>Anti-glare film</h3>
+        <p>Reduces harsh screen and windshield glare for home offices, monitors and long desert drives.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="area" style="background:var(--ink-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="area-layout">
+      <div>
+        <span class="kicker" style="color:var(--glass); display:block; margin-bottom:12px; font-size:0.85rem;">Where we work</span>
+        <h2 style="font-size:clamp(1.8rem,3.4vw,2.5rem); margin-bottom:16px;">Based in the Valley. Booked across it.</h2>
+        <p style="color:var(--sand-dim); font-size:1.02rem; max-width:46ch;">We run installer crews throughout the greater Phoenix area. If your city isn't listed, call us — we still might make it out your way.</p>
+        <ul class="city-list">
+          <li>Phoenix</li><li>Scottsdale</li><li>Mesa</li><li>Tempe</li><li>Chandler</li><li>Gilbert</li>
+        </ul>
+      </div>
+      <div class="map-box">
+        <svg viewBox="0 0 400 400" width="100%" height="auto">
+          <defs>
+            <radialGradient id="ring" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#C9702D" stop-opacity="0.28"/>
+              <stop offset="100%" stop-color="#C9702D" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="200" cy="210" r="170" fill="url(#ring)"/>
+          <circle cx="200" cy="210" r="150" fill="none" stroke="#3A3E48" stroke-width="1" stroke-dasharray="3 6"/>
+          <circle cx="200" cy="210" r="105" fill="none" stroke="#3A3E48" stroke-width="1" stroke-dasharray="3 6"/>
+          <circle cx="200" cy="210" r="60" fill="none" stroke="#3A3E48" stroke-width="1" stroke-dasharray="3 6"/>
+
+          <!-- Phoenix hub -->
+          <circle cx="200" cy="210" r="8" fill="#E6893E"/>
+          <circle cx="200" cy="210" r="14" fill="none" stroke="#E6893E" stroke-width="1.5" opacity="0.6"/>
+          <text x="200" y="188" text-anchor="middle" fill="#EFE9DE" font-family="Space Grotesk, sans-serif" font-size="13" font-weight="700">PHOENIX</text>
+
+          <!-- Scottsdale -->
+          <circle cx="252" cy="178" r="5" fill="#5FA9B8"/>
+          <text x="262" y="181" fill="#B9B2A4" font-family="Inter, sans-serif" font-size="11">Scottsdale</text>
+
+          <!-- Mesa -->
+          <circle cx="258" cy="232" r="5" fill="#5FA9B8"/>
+          <text x="268" y="236" fill="#B9B2A4" font-family="Inter, sans-serif" font-size="11">Mesa</text>
+
+          <!-- Tempe -->
+          <circle cx="228" cy="238" r="5" fill="#5FA9B8"/>
+          <text x="234" y="255" fill="#B9B2A4" font-family="Inter, sans-serif" font-size="11">Tempe</text>
+
+          <!-- Chandler -->
+          <circle cx="222" cy="278" r="5" fill="#5FA9B8"/>
+          <text x="230" y="296" fill="#B9B2A4" font-family="Inter, sans-serif" font-size="11">Chandler</text>
+
+          <!-- Gilbert -->
+          <circle cx="250" cy="272" r="5" fill="#5FA9B8"/>
+          <text x="260" y="290" fill="#B9B2A4" font-family="Inter, sans-serif" font-size="11">Gilbert</text>
+
+          <!-- Glendale/west -->
+          <circle cx="150" cy="196" r="5" fill="#5FA9B8"/>
+          <text x="106" y="192" fill="#B9B2A4" font-family="Inter, sans-serif" font-size="11">Glendale</text>
+
+          <text x="200" y="384" text-anchor="middle" fill="#767C87" font-family="Inter, sans-serif" font-size="10.5" letter-spacing="0.04em">APPROXIMATE SERVICE RADIUS FROM PHOENIX</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">Why work with us</span>
+      <h2>The details that make a film job last.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><div class="why-num">Warranty</div><h3>Lifetime film warranty</h3><p>Covers bubbling, peeling and discoloration for as long as you own the vehicle or home.</p></div>
+      <div class="why-item"><div class="why-num">Installers</div><h3>Factory-trained crews</h3><p>Every install follows the same edge-to-edge process, from a two-door coupe to a storefront wall.</p></div>
+      <div class="why-item"><div class="why-num">Scheduling</div><h3>Same-week appointments</h3><p>Most vehicles are in and out in under two hours; homes and offices are scheduled around your day.</p></div>
+      <div class="why-item"><div class="why-num">Convenience</div><h3>Mobile install available</h3><p>For homes and fleets, our crew can come to you instead of the other way around.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="gallery-strip">
+      <img src="https://d8j0ntlcm91z4.cloudfront.net/user_38jUgr17I6kW2g7ysqUa9OUVLGY/hf_20260917_203457_945c9898-fc70-4019-9b4d-031c07d20019.png" alt="Technician applying window film">
+      <div class="stacked">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_38jUgr17I6kW2g7ysqUa9OUVLGY/hf_20260917_203502_49491f77-1f8c-4e76-a1b4-6313ef33af56.png" alt="Office building with tinted windows">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_38jUgr17I6kW2g7ysqUa9OUVLGY/hf_20260917_203419_23a4ad43-37ec-4b59-aabd-4948f7458198.png" alt="Car with tinted windows">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Ready to see it on your own car or home?</h2>
+      <p>Give us a call and we'll walk you through shades, film types and pricing for your exact vehicle or property.</p>
+      <a href="tel:4807883159" class="cta-phone">480-788-3159</a>
+      <div class="cta-note">Precision Tinting Solutions · Serving the Phoenix metro, Arizona</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">PRECISION TINTING SOLUTIONS</div>
+      <div class="foot-links">
+        <a href="#compare">See the Difference</a>
+        <a href="#services">Services</a>
+        <a href="#area">Service Area</a>
+        <a href="tel:4807883159">480-788-3159</a>
+      </div>
+    </div>
+    <div class="demo-note">
+      This is a demo website built to illustrate a possible web presence for Precision Tinting Solutions. Photos are AI-generated to demonstrate the before/after comparison tool, and business details beyond the phone number (address, hours, pricing, warranty terms) are placeholder content, not verified facts. Replace with real photos and copy before publishing live.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile nav toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // before/after compare sliders
+  document.querySelectorAll('[data-compare]').forEach(wrap => {
+    const afterImg = wrap.querySelector('.after-img');
+    const handle = wrap.querySelector('.compare-handle');
+    const range = wrap.querySelector('.compare-range');
+
+    function setPos(pct){
+      pct = Math.max(0, Math.min(100, pct));
+      afterImg.style.clipPath = `inset(0 0 0 ${pct}%)`;
+      handle.style.left = pct + '%';
+      range.value = pct;
+    }
+
+    range.addEventListener('input', e => setPos(Number(e.target.value)));
+
+    let dragging = false;
+    function pctFromEvent(e){
+      const rect = wrap.getBoundingClientRect();
+      const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+      return (x / rect.width) * 100;
+    }
+    wrap.addEventListener('pointerdown', e => { dragging = true; setPos(pctFromEvent(e)); });
+    window.addEventListener('pointermove', e => { if(dragging) setPos(pctFromEvent(e)); });
+    window.addEventListener('pointerup', () => dragging = false);
+
+    setPos(50);
+  });
+</script>
+
+</body>
+</html>
