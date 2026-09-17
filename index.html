@@ -69,6 +69,10 @@
   .brand{display:flex; align-items:center; gap:10px; font-family:'Space Grotesk'; font-weight:700; color:#fff; font-size:1.05rem;}
   .brand .mark{width:30px; height:30px; border-radius:7px; background:linear-gradient(135deg, var(--copper), var(--glass)); flex-shrink:0;}
   .brand small{display:block; font-family:'Inter'; font-weight:400; font-size:0.68rem; color:var(--sand-dim); letter-spacing:0.02em;}
+  @media (max-width:480px){
+    .brand{font-size:0.82rem;}
+    .brand small{font-size:0.6rem;}
+  }
   nav.links{display:flex; gap:32px; align-items:center;}
   nav.links a{font-size:0.92rem; color:var(--sand-dim); transition:color .15s;}
   nav.links a:hover{color:var(--sand);}
@@ -79,14 +83,40 @@
     white-space:nowrap;
   }
   .call-btn:hover{background:var(--copper-bright);}
-  .menu-toggle{display:none; background:none; border:none; color:var(--sand); font-size:1.5rem; cursor:pointer;}
+  .menu-toggle{display:none; background:none; border:none; color:var(--sand); font-size:1.7rem; line-height:1; cursor:pointer; padding:4px;}
+  /* Mobile nav panel lives OUTSIDE <header> in the DOM on purpose: header uses
+     backdrop-filter, which creates a new containing block for fixed-position
+     descendants. Nesting the panel inside it made it size against the short
+     header box instead of the full viewport, leaving it looking see-through.
+     As a sibling of header, position:fixed here is relative to the viewport
+     like normal, and the solid background covers the whole screen. */
+  #mobileNav{
+    display:none;
+    position:fixed; inset:0; z-index:100;
+    background:var(--ink);
+    padding:88px 28px 40px;
+    flex-direction:column;
+    gap:8px;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  #mobileNav.open{display:flex;}
+  #mobileNav a{
+    font-size:1.15rem; color:var(--sand); padding:16px 4px;
+    border-bottom:1px solid var(--line);
+  }
+  #mobileNav a.call-btn{
+    border-bottom:none; margin-top:18px; justify-content:center;
+    text-align:center; font-size:1.05rem; padding:16px;
+  }
+  #mobileNav .mobile-close{
+    position:absolute; top:20px; right:20px;
+    background:none; border:none; color:var(--sand); font-size:1.9rem;
+    line-height:1; cursor:pointer; padding:6px;
+  }
+  body.nav-open{overflow:hidden;}
   @media (max-width:860px){
-    nav.links{
-      position:fixed; inset:64px 0 0 0; background:var(--ink); flex-direction:column;
-      padding:32px 24px; gap:22px; transform:translateX(100%); transition:transform .25s ease;
-    }
-    nav.links.open{transform:translateX(0);}
-    nav.links a{font-size:1.1rem;}
+    nav.links{display:none;}
     .menu-toggle{display:block;}
   }
 
@@ -99,6 +129,9 @@
     overflow:hidden;
     border-bottom:1px solid var(--line);
   }
+  @media (max-width:720px){
+    .hero{min-height:auto;}
+  }
   .hero-bg{
     position:absolute; inset:0;
     background-size:cover; background-position:center;
@@ -109,6 +142,9 @@
     background:linear-gradient(90deg, rgba(21,23,28,0.96) 0%, rgba(21,23,28,0.78) 42%, rgba(21,23,28,0.35) 75%, rgba(21,23,28,0.55) 100%);
   }
   .hero-content{position:relative; z-index:2; max-width:var(--wrap); margin:0 auto; padding:120px 24px 90px; width:100%;}
+  @media (max-width:720px){
+    .hero-content{padding:64px 20px 56px;}
+  }
   .hero-eyebrow-line{display:flex; align-items:center; gap:12px; margin-bottom:22px;}
   .hero-eyebrow-line .dash{width:34px; height:2px; background:var(--copper);}
   .hero-eyebrow-line span{color:var(--sand-dim); font-size:0.85rem;}
@@ -137,6 +173,12 @@
   .hero-stats div{border-left:2px solid var(--copper); padding-left:14px;}
   .hero-stats .num{font-family:'Space Grotesk'; font-size:1.7rem; color:#fff; font-weight:700;}
   .hero-stats .lbl{font-size:0.82rem; color:var(--sand-dim);}
+  @media (max-width:560px){
+    .hero-stats{gap:24px 32px; margin-top:40px;}
+    .hero-stats .num{font-size:1.4rem;}
+    .hero-ctas{flex-direction:column; align-items:stretch;}
+    .hero-ctas .btn{justify-content:center;}
+  }
 
   /* ---------- section headers ---------- */
   .sec-head{max-width:640px; margin-bottom:56px;}
@@ -289,9 +331,19 @@
       <a href="#contact">Contact</a>
       <a href="tel:4807883159" class="call-btn">Call 480-788-3159</a>
     </nav>
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">&#9776;</button>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">&#9776;</button>
   </div>
 </header>
+
+<nav id="mobileNav" aria-label="Mobile">
+  <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
+  <a href="#compare">See the Difference</a>
+  <a href="#shades">Shades</a>
+  <a href="#services">Services</a>
+  <a href="#area">Service Area</a>
+  <a href="#contact">Contact</a>
+  <a href="tel:4807883159" class="call-btn">Call 480-788-3159</a>
+</nav>
 
 <section class="hero">
   <div class="hero-bg" style="background-image:url('https://d8j0ntlcm91z4.cloudfront.net/user_38jUgr17I6kW2g7ysqUa9OUVLGY/hf_20260917_203430_8e079101-549e-4a20-9564-89fd4d919b5e.png');"></div>
@@ -541,9 +593,23 @@
 <script>
   // mobile nav toggle
   const menuToggle = document.getElementById('menuToggle');
-  const navLinks = document.getElementById('navLinks');
-  menuToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  const mobileClose = document.getElementById('mobileClose');
+  const mobileNav = document.getElementById('mobileNav');
+
+  function openNav(){
+    mobileNav.classList.add('open');
+    document.body.classList.add('nav-open');
+    menuToggle.setAttribute('aria-expanded', 'true');
+  }
+  function closeNav(){
+    mobileNav.classList.remove('open');
+    document.body.classList.remove('nav-open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }
+  menuToggle.addEventListener('click', openNav);
+  mobileClose.addEventListener('click', closeNav);
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+  window.addEventListener('keydown', e => { if(e.key === 'Escape') closeNav(); });
 
   // before/after compare sliders
   document.querySelectorAll('[data-compare]').forEach(wrap => {
