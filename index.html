@@ -378,6 +378,16 @@
     color:var(--sand-dim); font-size:0.78rem; border-top:1px solid var(--line);
     padding-top:22px; line-height:1.7;
   }
+  .built-by{
+    display:flex; align-items:center; gap:10px;
+    color:var(--sand); font-size:0.86rem;
+    padding-bottom:18px;
+  }
+  .built-by strong{color:#fff; font-weight:600;}
+  .built-by-dot{
+    width:7px; height:7px; border-radius:50%; flex-shrink:0;
+    background:linear-gradient(135deg, var(--copper), var(--glass));
+  }
 </style>
 </head>
 <body>
@@ -745,8 +755,12 @@
         <a href="tel:4807883159">480-788-3159</a>
       </div>
     </div>
+    <div class="built-by">
+      <span class="built-by-dot"></span>
+      Demo site built by the <strong>Maad Marketing</strong> team to show what's possible for Precision Tinting Solutions online.
+    </div>
     <div class="demo-note">
-      This is a demo website built to illustrate a possible web presence for Precision Tinting Solutions. Photos are AI-generated to demonstrate the before/after comparison tool, business details beyond the phone number (address, hours, pricing, warranty terms) are placeholder content, and the quote form below doesn't send data anywhere yet — see the README for how to connect it to email or a booking system. Replace with real photos and copy before publishing live.
+      This is a demo website — not a live, published site for the business yet. Photos are AI-generated to demonstrate the before/after comparison tool, business details beyond the phone number (address, hours, pricing, warranty terms) are placeholder content, and the quote form above doesn't send data anywhere yet — see the README for how to connect it to email or a booking system. Replace with real photos and copy before publishing live.
     </div>
   </div>
 </footer>
